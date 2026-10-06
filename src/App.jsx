@@ -6,13 +6,36 @@ export default function App() {
   const [episodes] = useState(episodeList);
   const [selectedEpisode, clickSelectedEpisode] = useState();
 
-  console.log(selectedEpisode);
+  function EpisodeList() {
+    return (
+      <section className="list">
+        <h2>Episodes</h2>
+        <ol>
+          {episodes.map((episode) => (
+            <li key={episode.id} onClick={() => clickSelectedEpisode(episode)}>
+              {episode.title}
+            </li>
+          ))}
+        </ol>
+      </section>
+    );
+  }
+
+  function EpisodeDetails() {
+    return (
+      <section className="details">
+        <h2>Episode Details</h2>
+        <p>Please select an episode.</p>
+      </section>
+    );
+  }
 
   return (
     <>
       <h1>Dark Echoes</h1>
       <main>
-        <episodeList />
+        <EpisodeList />
+        <EpisodeDetails />
       </main>
     </>
   );
