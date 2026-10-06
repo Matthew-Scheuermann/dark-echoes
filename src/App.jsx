@@ -4,7 +4,7 @@ import { episodeList } from "./data";
 export default function App() {
   // TODO
   const [episodes] = useState(episodeList);
-  const [selectedEpisode, clickSelectedEpisode] = useState();
+  const [selectedEpisode, clickSelectedEpisode] = useState(null);
 
   function EpisodeList() {
     return (
@@ -22,10 +22,21 @@ export default function App() {
   }
 
   function EpisodeDetails() {
+    if (selectedEpisode === null) {
+      return (
+        <section className="details">
+          <h2>Episode Details</h2>
+          <p>Please select an episode.</p>
+        </section>
+      );
+    }
+
     return (
       <section className="details">
-        <h2>Episode Details</h2>
-        <p>Please select an episode.</p>
+        <h2>Episode {selectedEpisode.id}</h2>
+        <h3>{selectedEpisode.title}</h3>
+        <p>{selectedEpisode.description}</p>
+        <button>Play Episode</button>
       </section>
     );
   }
